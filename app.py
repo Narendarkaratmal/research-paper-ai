@@ -6,8 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 # -------- DOWNLOAD FILES --------
 def download(file_id, output):
     url = f"https://drive.google.com/uc?id={file_id}"
-    gdown.download(url, output, quiet=False)
-
+    gdown.download(url, output, quiet=False, fuzzy=True)
 # -------- LOAD FILES --------
 @st.cache_data
 def load_data():
