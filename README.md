@@ -1,101 +1,105 @@
-# 📄 Research Papers Recommendation & Subject Area Prediction
+# 📄 Research Paper AI  
+### 🔍 Recommendation + 🧠 Subject Area Prediction using ML & NLP
 
-A machine learning project combining **LLMs** and **Deep Learning** for:
-1. Recommending similar research papers (Sentence Transformers + Cosine Similarity)
-2. Predicting subject areas of papers (MLP Text Classifier)
+🚀 Live App:  
+https://research-paper-ai-buzfv5dmxfbs9jafwmayul.streamlit.app
 
 ---
 
-## Project Structure
+## 📌 Overview
+
+This project is an end-to-end **Machine Learning + NLP web application** that helps users:
+
+1. 🔍 **Find similar research papers** based on a given title or text  
+2. 🧠 **Predict subject areas** of research papers using deep learning  
+
+The system is deployed as an interactive **Streamlit web app**, making it easy to use without any coding knowledge.
+
+---
+
+## ⚙️ Tech Stack
+
+- **Python**
+- **Streamlit** (Frontend + Deployment)
+- **NumPy / Scikit-learn**
+- **Sentence Transformers (MiniLM)**
+- **Deep Learning (MLP Model)**
+- **Pickle / NPY for model storage**
+
+---
+
+## 🧠 How It Works
+
+### 🔹 1. Recommendation System
+- Uses **Sentence Transformers (`all-MiniLM-L6-v2`)**
+- Converts research paper titles into **dense vector embeddings**
+- Computes **Cosine Similarity**
+- Returns **Top-5 most similar papers**
+
+---
+
+### 🔹 2. Subject Area Prediction
+- Uses a **Multi-Layer Perceptron (MLP)**
+- Input: Paper abstract  
+- Output: Predicted subject area(s)
+- Uses **text vectorization + trained neural network**
+
+---
+## 📁 Project Structure
 
 ```
-research_paper_project/
+research-paper-ai/
 │
-├── app.py                          # Streamlit web app
-├── requirements.txt                # Python dependencies
-├── README.md                       # This file
+├── app.py                  # Streamlit web app
+├── requirements.txt        # Dependencies
+├── README.md               # Documentation
 │
 ├── notebooks/
-│   ├── 01_recommendation_model.ipynb    # Train recommendation model
-│   └── 02_subject_prediction_model.ipynb # Train prediction model
+│   ├── 01_recommendation_model.ipynb
+│   └── 02_subject_prediction_model.ipynb
 │
-└── models/                         # Saved models (generated after training)
-    ├── embeddings.pkl
-    ├── sentences.pkl
-    ├── rec_model.pkl
-    ├── model.h5
-    ├── text_vectorizer_config.pkl
-    ├── text_vectorizer_weights.pkl
-    └── vocab.pkl
+├── models/
+│   ├── embeddings.npy
+│   ├── sentences.pkl
+│   ├── model.h5
+│   ├── vocab.pkl
+│   └── vectorizer files
 ```
+
 
 ---
 
-## Setup & Installation
+## 🚀 Features
+
+- 🔍 Top-5 similar research paper recommendations  
+- 🧠 Multi-label subject prediction  
+- ⚡ Fast inference using precomputed embeddings  
+- 🌐 Live deployed web application  
+- 🖥️ Simple and clean UI  
+
+---
+
+## 📊 Dataset Format
+
+Your dataset should include:
+
+| Column        | Description                          |
+|--------------|--------------------------------------|
+| title        | Paper title                          |
+| abstract     | Paper abstract                       |
+| subject_area | Subject category (single/multiple)   |
+
+---
+
+## ▶️ How to Run Locally
 
 ```bash
-# 1. Clone or download the project
-cd research_paper_project
+# Clone repo
+git clone https://github.com/your-username/research-paper-ai.git
+cd research-paper-ai
 
-# 2. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
-```
 
----
-
-## How to Use
-
-### Step 1 — Train the Models
-
-Run the notebooks **in order**:
-
-**Notebook 1 — Recommendation Model**
-```
-notebooks/01_recommendation_model.ipynb
-```
-- Loads your dataset (titles)
-- Generates sentence embeddings using `all-MiniLM-L6-v2`
-- Saves: `embeddings.pkl`, `sentences.pkl`, `rec_model.pkl`
-
-**Notebook 2 — Subject Prediction Model**
-```
-notebooks/02_subject_prediction_model.ipynb
-```
-- Loads your dataset (abstracts + subject areas)
-- Trains an MLP classifier
-- Saves: `model.h5`, `text_vectorizer_config.pkl`, `text_vectorizer_weights.pkl`, `vocab.pkl`
-
-### Step 2 — Run the Streamlit App
-
-```bash
+# Run app
 streamlit run app.py
-```
-
-Open your browser at `http://localhost:8501`
-
----
-
-## Dataset Format
-
-Your CSV dataset should have these columns:
-
-| Column | Description |
-|---|---|
-| `title` | Paper title (used for recommendation) |
-| `abstract` | Paper abstract (used for prediction) |
-| `subject_area` | One or more subject areas (list for multi-label) |
-
----
-
-## Features
-
-- **Recommendation**: Top-5 similar papers using cosine similarity on sentence embeddings
-- **Prediction**: Multi-label subject area classification using a 3-layer MLP
-- **Accuracy**: ~99% on trained dataset
-- **UI**: Clean Streamlit interface
-
----
-
-## License
-
-Licensed under **NOOR SAEED**
