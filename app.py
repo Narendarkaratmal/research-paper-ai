@@ -12,9 +12,12 @@ def download(file_id, output):
 def load_data():
     download("1RuA9vCqA-xmNndFWEYtkLdVCopqN_8RH", "embeddings.npy")
     download("13m4RN8yz0-CQ4Vn7-ie0TCIio08yweQj", "sentences.pkl")
-embeddings = np.load("embeddings.npy", allow_pickle=True)
+
+    embeddings = np.load("embeddings.npy", allow_pickle=True)
+
     import pickle
-    sentences = pickle.load(open("sentences.pkl", "rb"))
+    with open("sentences.pkl", "rb") as f:
+        sentences = pickle.load(f)
 
     return embeddings, sentences
 
